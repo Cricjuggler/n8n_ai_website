@@ -37,9 +37,11 @@ async function fetchMessages() {
 
    if (data.messages) {
      chatWindow.innerHTML = "";
-     data.messages.forEach((msg) =>
-       createMessage(msg.message, msg.user_type, msg.datetime)
-     );
+      data.messages.forEach((msg) => {
+        let userType = msg.user_type;
+        if (userType === "AI tanay") userType = "Ai Rohan";
+        createMessage(msg.message, userType, msg.datetime);
+      });
      chatWindow.scrollTop = chatWindow.scrollHeight;
    }
  } catch (err) {
